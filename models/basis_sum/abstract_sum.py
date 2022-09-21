@@ -86,7 +86,7 @@ class AbstractSum(AbstractNeural, ABC):
             if self.mc_approx:
                 # Compensator calculation
                 cur_ts = ts[idx][cur_m]
-                mc_ts = cur_ts.repeat_interleave(self.compensator_sims)
+                mc_ts = cur_ts.repeat_interleave(self.compensator_sims) + 1e-8
 
                 sampler = Uniform(torch.zeros_like(mc_ts), mc_ts)
                 mc_points = sampler.sample()
